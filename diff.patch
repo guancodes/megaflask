@@ -1,0 +1,59 @@
+diff --git a/.gitignore b/.gitignore
+index 817e111..847d711 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -1,3 +1,4 @@
+ /flask/
+ /__pycache__/
+ *.pyc
++app.db
+diff --git a/app/__init__.py b/app/__init__.py
+index 12c2cdf..54f4788 100644
+--- a/app/__init__.py
++++ b/app/__init__.py
+@@ -1,5 +1,5 @@
+ from flask import Flask
+-from flask_sqlalchemy import SQLALchemy
++from flask_sqlalchemy import SQLAlchemy
+ 
+ app = Flask(__name__)
+ app.config.from_object('config')
+diff --git a/app/db_create.py b/app/db_create.py
+index 1ee8008..4f68f76 100755
+--- a/app/db_create.py
++++ b/app/db_create.py
+@@ -1,4 +1,4 @@
+-
++#!/usr/bin/env python
+ from migrate.versioning import api
+ from config import SQLALCHEMY_DATABASE_URI
+ from config import SQLALCHEMY_MIGRATE_REPO
+diff --git a/app/db_migrate.py b/app/db_migrate.py
+index 2a5703b..d68cc61 100755
+--- a/app/db_migrate.py
++++ b/app/db_migrate.py
+@@ -1,4 +1,4 @@
+-
++#!/usr/bin/env python
+ from migrate.versioning import api
+ from config import SQLALCHEMY_DATABASE_URI
+ from config import SQLALCHEMY_MIGRATE_REPO
+diff --git a/config.py b/config.py
+index d6ee0bc..92dbbac 100644
+--- a/config.py
++++ b/config.py
+@@ -13,4 +13,4 @@ import os
+ basedir = os.path.abspath(os.path.dirname(__file__))
+ 
+ SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir,'app.db')
+-SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir 'db_repository')
++SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
+diff --git a/run.py b/run.py
+index 178fd8a..46925f9 100755
+--- a/run.py
++++ b/run.py
+@@ -1,3 +1,3 @@
+-#!flask/bin/python
++#!/usr/bin/env python
+ from app import app
+ app.run(debug=True)
