@@ -11,6 +11,12 @@ OPENID_PROVIDERS = [
 
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
+#os is module, path is submodule, and dirname is a function
+#path must be a module because all the classes are CamelCase
+#abspath and dirname are not methods because they are not part of a class
+#the function dirname returns a relative path
+#a relative path is usually no good. So we need to convert it to an abspath.
+#connecting to a data base wouldn't work if we use a relative path.
 
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir,'app.db')
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')

@@ -1,8 +1,13 @@
 from flask import render_template, flash, redirect
 from app import app
+# if you want to directly import from a package, then the
+# object to import needs to be defined inside __init__.py
+# a module is also a package
+# a package is a folder that contains __init__.py
+# a module is a .py file
 from .forms import LoginForm
 
-@app.route('/')
+@app.route('/') # this app is my Flask app from __init__.py
 @app.route('/index')
 def index():
 	user = {'nickname': 'Michael'}
